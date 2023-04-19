@@ -74,7 +74,6 @@ body > div {
     top: 32px;
     right: 32px;
     z-index: 999999;
-    animation: fadeOut 1s linear;
 }
 
 .toast {
@@ -87,6 +86,7 @@ body > div {
     max-width: 450px;
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    /* animation: slideInLeft ease 0.5s, fadeOut linear 1s forwards; */
     transition: all linear 0.3s;
 }
 

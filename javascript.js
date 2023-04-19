@@ -3,15 +3,23 @@ function toast({ title = "", message = "", type = "", duration = 3000 }) {
     if (main) {
         const toast = document.createElement("div");
         toast.classList.add("toast", `toast--${type}`);
+        const delay = (duration / 1000).toFixed(2);
+        toast.style.animation = `slideInLeft ease 0.5s, fadeOut linear 1s ${delay}s  forwards`;
         const icons = {
             success: "fas fa-check-circle",
             info: "fas fa-info-circle",
             warning: "fas fa-exclamation-circle",
             error: "fas fa-exclamation-circle",
         };
+        toast.onclick = function (e) {
+            if (e.target.closest(".toast__close")) {
+                main.removeChild(toast);
+                clearTimeout(removeToastAuto);
+            }
+        };
         const removeToastAuto = setTimeout(function () {
             main.removeChild(toast);
-            clearTimeout(removeToastAuto);
+            console.log("Ham nay se turn off trong" + duration + "ms");
         }, duration + 1000);
         const icon = icons[type];
         toast.innerHTML = `
@@ -29,9 +37,20 @@ function toast({ title = "", message = "", type = "", duration = 3000 }) {
         main.appendChild(toast);
     }
 }
-toast({
-    title: "Thành công",
-    message: "Bạn đã đăng ký thành công tài khoản tại F8.",
-    type: "error",
-    duration: 3000,
-});
+
+function showSuccessToast() {
+    toast({
+        title: "Thành công",
+        message: "Bạn đã đăng ký thành công tài khoản tại F8.",
+        type: "success",
+        duration: 3000,
+    });
+}
+function showErrorToast() {
+    toast({
+        title: "Thất bại",
+        message: "Bạn đã đăng ký thành công tài khoản tại F8.",
+        type: "error",
+        duration: 3000,
+    });
+}
