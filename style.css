@@ -11,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 10px;
-    animation: moveleft 0.3s linear, fadeOut linear 0.7s 2s forwards;
+    animation: moveleft 0.3s linear, fadeOut linear 0.7s 1s forwards;
 }
 @keyframes moveleft {
     from {
@@ -49,6 +49,7 @@ body {
 }
 .toast__close {
     color: #444444;
+    cursor: pointer;
     font-weight: 700;
 }
 .toast__body {

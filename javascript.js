@@ -8,8 +8,14 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
         };
         const icon = icons[type];
         toast.classList.add("toast", `toast__${type}`);
+        toast.onclick = function (e) {
+            if (e.target.closest(".toast__close")) {
+                main.removeChild(toast);
+                clearTimeout(removeToastAuto);
+            }
+        };
         const delay = (duration / 1000).toFixed(2);
-
+        toast.style.animation = `moveleft ease 0.3s linear, fadeOut linear 0.7s ${delay} forwards`;
         const removeToastAuto = setTimeout(function () {
             main.removeChild(toast);
         }, duration + 1000);
@@ -30,7 +36,7 @@ function showSuccessToast() {
         title: "Success",
         message: "You can access all the files in this folder",
         type: "success",
-        duration: 3000,
+        duration: 5000,
     });
 }
 function showErrorToast() {
